@@ -15,7 +15,6 @@ interface Prop{
 
 
 
-export var removedItemsCart:number;
 
 const CartDetails = (props:Prop)=>{
     

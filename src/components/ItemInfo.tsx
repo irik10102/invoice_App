@@ -46,8 +46,11 @@ const ItemInfo = ()=>{
         }
     }
 
-    const addCart = (ind:number)=>{
-        setCartList([...cartList, list[ind]]);           //we capture the state at which we want to keep it in list
+    const addCart = (ind:number)=>{                      //we capture the state at which we want to keep it in list
+        let obj:Item = {...list[ind]};
+        setCartList([...cartList, obj]);    
+        
+        list[ind].added = true;
     }
 
     const remList = (ind:number)=>{                      //Removing from list and updating with setList()
