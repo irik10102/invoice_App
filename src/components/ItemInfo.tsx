@@ -82,10 +82,10 @@ const ItemInfo = ()=>{
                                             <th>Name</th>
                                             <th>Price</th>
                                             <th>Category</th>
-                                            <th colSpan={3}>Quantity</th>
+                                            <th colSpan={4}>Quantity</th>
                                             <th></th>
                                             <th></th>
-                                            <th>Action</th>
+                                            <th></th>
                                         </tr>
                                         {list.map((val,ind)=>{
                                             const {name, price, category, qty} = val;

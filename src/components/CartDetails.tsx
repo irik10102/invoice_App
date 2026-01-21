@@ -16,9 +16,9 @@ const CartDetails = (props:Prop)=>{
         <>
             <table>
                 <tr>
-                    <th>Item Name</th>
+                    <th>Item-Name</th>
                     <th>Category</th>
-                    <th>Total Price</th>
+                    <th>Total-Price</th>
                 </tr>
                 {cart.map((val)=>{
                     const {name, price,category, qty} = val;
