@@ -1,3 +1,6 @@
+
+
+
 interface Prop{
     cart:{
          name:string,
@@ -5,12 +8,22 @@ interface Prop{
         category:string,
         qty:number,
         added:boolean
-    }[];
+    }[],
+
+    setCart:(ind:number)=>void;
 }
+
+
+
+export var removedItemsCart:number;
 
 const CartDetails = (props:Prop)=>{
     
-    var {cart} = props;
+    var {cart, setCart} = props;
+
+    const rem = (i:number)=>{
+        setCart(i);
+    }
 
     return(
         <>
@@ -20,14 +33,16 @@ const CartDetails = (props:Prop)=>{
                     <th>Category</th>
                     <th>Total-Price</th>
                 </tr>
-                {cart.map((val)=>{
-                    const {name, price,category, qty} = val;
-                    return  <tr>
-                                <td>{name}</td>
-                                <td>{category}</td>
-                                <td>{qty*price}/-</td>
-                                <td><button>Remove</button></td>
-                            </tr>
+                {cart.map((val,ind)=>{
+                    if(val.added){
+                        const {name, price,category, qty} = val;
+                        return  <tr>
+                                    <td>{name}</td>
+                                    <td>{category}</td>
+                                    <td>{qty*price}/-</td>
+                                    <td><button onClick={()=>{rem(ind)}}>Remove</button></td>
+                                </tr>
+                    }
                 })}
             </table>
         </>

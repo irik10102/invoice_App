@@ -1,7 +1,9 @@
 import { useRef } from "react"
 import { useState } from "react";
 import React from "react";
+
 import CartDetails from "./CartDetails";
+
 
 interface Item{
     name:string,
@@ -16,7 +18,6 @@ const ItemInfo = ()=>{
     const refPrice = useRef<HTMLInputElement>(null);
     const refCat   = useRef<HTMLSelectElement>(null);
 
-    const [cartList, setCartList] = useState<Item[]>([]);
     const [list, setList] = useState<Item[]>([]);
 
     
@@ -44,13 +45,30 @@ const ItemInfo = ()=>{
         
             list[ind].added = true;
             setList([...list]);
-
-            cartList.push(list[ind]);
-            setCartList([...cartList]);
         
     }
 
+    const cartUpd = (ind:number)=>{
+        list[ind].added = false;
+        setList([...list]);
+    }
 
+    const rem = (i:number)=>{
+        list.splice(i,1);
+        setList([...list]);
+    }
+
+
+    const countCartItems = ()=>{
+        return list.reduce((acc,val)=>{
+            if(val.added)
+                acc += 1;
+            return acc;
+        },0)
+    }
+
+    let countCart = countCartItems();
+    console.log(countCartItems()); 
     return(
         <>
             <table className="container mt-5" >
@@ -99,10 +117,12 @@ const ItemInfo = ()=>{
                                                         <td>{qty}</td>
                                                         <td><button onClick={()=>dec(ind)}>-</button></td>
                                                         <td >{(!val.added)?<button onClick={()=>addCart(ind)}>Add Cart</button>:<p><b>Added!</b></p>}</td>
+                                                        <td><button onClick={()=>{rem(ind)}}>Remove</button></td>
                                                     </tr>
                     
                 })}</table>:<p><b>No Items Added yet!</b></p>}
-                {(cartList.length > 0)?<CartDetails cart={cartList}/>:<p><b>No Items Added to cart yet!</b></p>}
+
+                {(countCart)?<CartDetails cart={list} setCart={cartUpd}/>:<p><b>No Items Added to cart yet!</b></p>}
                     
                     
             </div>
@@ -111,5 +131,4 @@ const ItemInfo = ()=>{
         </>
     )
 }
-
 export default ItemInfo;
