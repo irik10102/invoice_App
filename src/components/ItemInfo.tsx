@@ -26,7 +26,7 @@ const ItemInfo = ()=>{
         const price = refPrice.current!.value;
         const cat = refCat.current!.value;
 
-        setList([...list, {['name']:name, ['price']:Number(price), ['category']:cat, ['qty']:0, ['added']:false}]);
+        setList([...list, {['name']:name, ['price']:Number(price), ['category']:cat, ['qty']:1, ['added']:false}]);
     }
 
     const inc = (ind:number)=>{
@@ -34,18 +34,20 @@ const ItemInfo = ()=>{
         setList([...list]);
     }
     const dec = (ind:number)=>{
-        if(list[ind].qty>0){
+        if(list[ind].qty>1){
             list[ind].qty -=1;
             setList([...list]);
         }
     }
 
     const addCart = (ind:number)=>{
-        list[ind].added = true;
-        setList([...list]);
+        
+            list[ind].added = true;
+            setList([...list]);
 
-        cartList.push(list[ind]);
-        setCartList([...cartList]);
+            cartList.push(list[ind]);
+            setCartList([...cartList]);
+        
     }
 
 
@@ -82,7 +84,7 @@ const ItemInfo = ()=>{
                                             <th>Name</th>
                                             <th>Price</th>
                                             <th>Category</th>
-                                            <th colSpan={4}>Quantity</th>
+                                            <th colSpan={3}>Quantity</th>
                                             <th></th>
                                             <th></th>
                                             <th></th>

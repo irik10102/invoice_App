@@ -10,7 +10,7 @@ interface Prop{
 
 const CartDetails = (props:Prop)=>{
     
-    const {cart} = props;
+    var {cart} = props;
 
     return(
         <>
