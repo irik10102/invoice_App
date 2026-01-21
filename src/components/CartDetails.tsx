@@ -26,6 +26,7 @@ const CartDetails = (props:Prop)=>{
                                 <td>{name}</td>
                                 <td>{category}</td>
                                 <td>{qty*price}/-</td>
+                                <td><button>Remove</button></td>
                             </tr>
                 })}
             </table>

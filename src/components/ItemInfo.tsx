@@ -1,6 +1,7 @@
 import { useRef } from "react"
 import { useState } from "react";
 import React from "react";
+import CartDetails from "./CartDetails";
 
 interface Item{
     name:string,
@@ -99,9 +100,9 @@ const ItemInfo = ()=>{
                                                     </tr>
                     
                 })}</table>:<p><b>No Items Added yet!</b></p>}
-                <table>
+                {(cartList.length > 0)?<CartDetails cart={cartList}/>:<p><b>No Items Added to cart yet!</b></p>}
                     
-                </table>
+                    
             </div>
            
             
